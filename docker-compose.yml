@@ -1,4 +1,4 @@
-version: '2.4'
+version: "2.4"
 
 services:
   app:
@@ -26,7 +26,7 @@ services:
     environment:
       DJANGO_SECRET_KEY: reallysupersecret
       DJANGO_MANAGEPY_MIGRATE: "on"
-      DJANGO_ALLOWED_HOSTS: 172.17.0.1,localhost,127.0.0.1
+      DJANGO_ALLOWED_HOSTS: 172.17.0.1,localhost,127.0.0.1,0.0.0.0
     entrypoint: /app/docker-entrypoint.sh
     command: python manage.py runserver 0.0.0.0:8000
 
@@ -53,6 +53,7 @@ services:
       - parserator-db-data:/var/lib/postgresql/data
     ports:
       - 32001:5432
+      - 8080:8000
 
 volumes:
   # Declare your named volume for Postgres.
