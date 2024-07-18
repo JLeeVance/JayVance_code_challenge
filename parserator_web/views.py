@@ -49,8 +49,6 @@ class AddressParse(APIView):
         
         try:
             parse_values, addr_type = self.parse(addr)
-            logger.warning('After Parse:')
-            logger.warning(parse_values, addr_type)
             
             return Response({
                 'input_string': addr,
@@ -60,7 +58,7 @@ class AddressParse(APIView):
         
         # Handles repeated tags within parse() response 
         except usaddress.RepeatedLabelError as rle:
-            logger.error('Parsing Error:', rle)
+
             return Response({
                 'ErrorMessage': 'You must enter a valid US address, be sure there are not repeating values.',
                 }, 400)
@@ -75,16 +73,5 @@ class AddressParse(APIView):
     def parse(self, address):
 
         address_components, address_type = usaddress.tag(address)
-        # address_type = 'Residential' #Default
-        
-        # for pair in address_components:
-        #     # Checking for a type match to determine addr_type #
-        #     if pair[1] in types.keys():
-        #         type = pair[1]
-        #         # Assign type based on types match value
-        #         address_type = types[type]
-        #         break
-        if 'error' in address:
-            raise ValueError('Invalid address format')
                 
         return address_components, address_type
