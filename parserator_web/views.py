@@ -33,7 +33,14 @@ class AddressParse(APIView):
     renderer_classes = [JSONRenderer]
     
     def get(self, request):
+        invalid_characters = set("@$%^&*()_+={}[]|:;'<>?!")
+
         addr = request.query_params.get('address')
+        for char in addr:
+            if char in invalid_characters:
+                return Response({
+                    'ErrorMessage':'Please be sure to use only valid Address characters'
+                }, 400)
 
         if not addr:
             return Response({
@@ -56,14 +63,14 @@ class AddressParse(APIView):
             logger.error('Parsing Error:', rle)
             return Response({
                 'ErrorMessage': 'You must enter a valid US address, be sure there are not repeating values.',
-                }, 412)
+                }, 400)
         
         # Handles all other errors
         except Exception as e:
             return Response({
                 'ErrorMessage': 'There was an unexpected error while processing your request, try again.',
                 'ErrorData': e
-                }, 500)
+                }, 400)
 
     def parse(self, address):
 

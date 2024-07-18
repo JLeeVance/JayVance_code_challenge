@@ -70,6 +70,7 @@ function addToDOM(parse_response){
 
 function showErrorMessages(error){
    const message = error.message
+   //  Added div for user error data display
    const errorDiv = document.getElementById('error-div');
    const errorSpan = document.getElementById('error-message');
 
@@ -79,5 +80,5 @@ function showErrorMessages(error){
    setTimeout(() => {
       errorDiv.style.display = 'none';
       errorSpan.textContent = ''
-   }, 3000);
+   }, 3500);
 }
