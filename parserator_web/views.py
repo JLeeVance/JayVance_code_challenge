@@ -11,6 +11,7 @@ from rest_framework.exceptions import ParseError
 
 logger = logging.getLogger(__name__)
 
+# created types dictionary to deduce addr_type 
 types = {
     'LandmarkName':'major landmark building',
     'OccupancyType':'multi-unit dwelling',
@@ -28,20 +29,28 @@ class AddressParse(APIView):
     
     def get(self, request):
         addr = request.query_params.get('address')
-        parse_values = self.parse(addr)
-        logger.warning('Inside get, after self.parse', parse_values)
-        
-        # TODO: Flesh out this method to parse an address string using the
-        # parse() method and return the parsed components to the frontend.
-        return Response({'components': parse_values})
+        try:
+            parse_values, addr_type = self.parse(addr)
+
+            return Response({
+                'input_string': addr,
+                'address_components': parse_values,
+                'address_type': addr_type,
+            }, 200)
+        except:
+            return Response({'Error':'There was an error in your submission'}, 412)     
 
     def parse(self, address):
 
         address_components = usaddress.parse(address)
-        logger.warning('Inside self.parse')
-        logger.critical(address_components[0])
-        address_type = ''
-
-        # TODO: Implement this method to return the parsed components of a
-        # given address using usaddress: https://github.com/datamade/usaddress
+        
+        for pair in address_components:
+            # Checking for a type match to determine addr_type #
+            if pair[1] in types.keys():
+                type = pair[1]
+                # Assign type based on types match value
+                address_type = types[type]
+                break
+            address_type = 'Residential'
+                
         return address_components, address_type
