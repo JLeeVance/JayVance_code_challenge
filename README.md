@@ -7,8 +7,7 @@ Hello! Thanks for taking a moment to look over my code_challenge for DataMade. I
 
 
 ### Demo
-
-![Demo Gif](https://github.com/JLeeVance/JayVance_code_challenge/raw/main/parserator_web/static/images/DataMade_JayVanceDemo.gif)
+![Demo Gif](images/usaddress.gif)
 
 ### Installation
 
