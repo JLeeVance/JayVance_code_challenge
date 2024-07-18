@@ -51,5 +51,9 @@ COPY . /app
 # the 'collectstatic' management command
 ENV DJANGO_SECRET_KEY 'foobar'
 
+EXPOSE 8000
+
 # Build static files into the container
 RUN python manage.py collectstatic --noinput
+
+CMD ["python", "manage.py", "runserver.py", "0.0.0.0:8000"]

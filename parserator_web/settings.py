@@ -13,6 +13,7 @@ import os
 
 import dj_database_url
 
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -28,8 +29,8 @@ DEBUG = False if os.getenv('DJANGO_DEBUG', True) == 'False' else True
 allowed_hosts = os.getenv('DJANGO_ALLOWED_HOSTS', '')
 ALLOWED_HOSTS = allowed_hosts.split(',') if allowed_hosts else []
 
-# Application definition
 
+# Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -137,6 +138,7 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
+
 
 # Enforce SSL in production
 if DEBUG is False:

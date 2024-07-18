@@ -1,9 +1,7 @@
-version: "2.4"
-
 services:
-  app:
+  web:
     image: parserator
-    container_name: parserator
+    container_name: parserator_cc
     build: .
     # Allow container to be attached to, e.g., to access the pdb shell
     stdin_open: true
@@ -31,7 +29,7 @@ services:
     command: python manage.py runserver 0.0.0.0:8000
 
   postgres:
-    container_name: parserator-postgres
+    container_name: postgres_cc
     image: postgres:11
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
@@ -53,7 +51,6 @@ services:
       - parserator-db-data:/var/lib/postgresql/data
     ports:
       - 32001:5432
-      - 8080:8000
 
 volumes:
   # Declare your named volume for Postgres.
