@@ -14,7 +14,7 @@ from rest_framework.renderers import JSONRenderer
 logger = logging.getLogger(__name__)
 
 # created types dictionary to deduce addr_type
-# realized that .tag() would be the correct use
+# realized that .tag() miight be the correct use
 # of the usaddress methods available
 
 # types = {
