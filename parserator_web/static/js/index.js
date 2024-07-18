@@ -23,21 +23,17 @@ document.addEventListener('DOMContentLoaded', (e) => {
          return r.json();
       })
       .then(parse_response => {
-         // console.log('After Good Fetch on Frontend',parse_response)
-         
          addToDOM(parse_response)
       })
       .catch(error => {
-         // console.log(error)
          showErrorMessages(error)
       })
    });
 })
 
 function createTableRows(addressComponents){
-   console.log(addressComponents)
+
    for ([key, value] of Object.entries(addressComponents)){
-      // console.log(key, value)
       const newRow = document.createElement('tr');
       const addressPart = document.createElement('td');
       const tag = document.createElement('td');
