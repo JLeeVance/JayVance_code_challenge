@@ -24,13 +24,3 @@ docker-compose up
 ```
 
 The console will become a Docker console, giving you Docker logs output. You should now be able to visit the website at http://localhost:8000.
-
-
-
-
-
-### Step 6: Submit your work
-
-To submit your work, create a feature branch for your code, commit your changes,
-push your commits up to your fork, and open up a pull request against `master`.
-Finally, drop a link to your pull request in your application.
