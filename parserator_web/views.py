@@ -75,3 +75,4 @@ class AddressParse(APIView):
         address_components, address_type = usaddress.tag(address)
                 
         return address_components, address_type
+

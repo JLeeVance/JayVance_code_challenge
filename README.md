@@ -1,5 +1,6 @@
 # DataMade Code Challenge: Parserator
 ## Applicant: Jay Vance
+### Email: justinleevance94@gmail.com
 
 ### Short About-Me
 
